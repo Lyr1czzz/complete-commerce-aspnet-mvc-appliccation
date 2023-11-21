@@ -1,4 +1,5 @@
 using eTickets.Data;
+using eTickets.Data.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -15,6 +16,10 @@ namespace eTickets
             {
                 options.UseSqlServer(builder.Configuration.GetSection("ConnectionStrings:DefaultConnection").Value);
             });
+
+            //Services configuration
+            builder.Services.AddScoped<IActorsService, ActorService>();
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
